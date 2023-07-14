@@ -1,0 +1,107 @@
+{% extends 'shared/layer.html' %}
+{% load static %}
+
+{% block title %}ToDo{% endblock %}
+
+{% block content %}
+
+  <div class="row">
+
+
+<div class="col-md-8">
+    <h2>To-Do Form</h2>
+    <form id="todoForm">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" name="title" id="title" required="">
+        </div> <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control" name="description" id="description" rows="3" required=""></textarea>
+    </div>
+        <div class="form-row"> <div class="form-group col-md-6">
+        <label for="priority">Priority:</label>
+        <select class="form-control" name="priority" id="priority" required="">
+            < {% for choice_value, choice_label in priority %}
+            <option value="{{ choice_value }}">{{ choice_label }}</option>
+        {% endfor %}
+        </select> </div> <div class="form-group col-md-6">
+        <label for="category">Category:</label>
+        <select class="form-control" name="category" id="category" required="">
+            {% for choice_value, choice_label in category %}
+            <option value="{{ choice_value }}">{{ choice_label }}</option>
+        {% endfor %}
+        </select>
+    </div>
+
+    </div>
+
+                <div class="form-group col-md-6 mr-3">
+      <label for="dueDate">Due Date:</label>
+      <input type="date" class="form-control ml-2" name="deadline" id="dueDate" required="">
+    </div>
+        <button type="button" class="btn btn-primary">Add</button>
+        <button type="button" class="btn btn-secondary" style="display: none;">Cancel</button>
+    </form>
+</div>
+
+
+      <div class="col-md-4">
+      <h2>Filter</h2>
+
+      <div class="form-group">
+      <form class="filter-form">
+          <div class="form-select">
+          <label for="priorityFilter">Filter by Priority:</label>
+        <select class="form-control" id="priorityFilter" name="priority">
+          <option value="all">All</option>
+            {% for choice_value, choice_label in priority %}
+            <option value="{{ choice_value }}">{{ choice_label }}</option>
+        {% endfor %}
+        </select>
+      </div>
+
+       <div class="form-select">
+          <label for="progressFilter">Filter by Progress:</label>
+        <select class="form-control" id="progressFilter" name="progress">
+          <option value="all">All</option>
+            {% for choice_value, choice_label in progress %}
+            <option value="{{ choice_value }}">{{ choice_label }}</option>
+        {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-select">
+          <label for="categoryFilter">Filter by Category:</label>
+        <select class="form-control" id="categoryFilter" name="category">
+          <option value="all">All</option>
+            {% for choice_value, choice_label in category %}
+            <option value="{{ choice_value }}">{{ choice_label }}</option>
+        {% endfor %}
+        </select>
+      </div>
+
+      </form>
+       <button type="button" class="btn btn-primary filter-form-btn">Apply Filter</button>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="todo-list">
+  <h2>To-Do Items</h2>
+      <div class="todo-items">
+
+
+          {% include 'task/components/_todo_items.html' %}
+      </div>
+  </div>
+{% endblock %}
+
+
+{% block this_page_footer_references %}
+    <script src="{% static 'js/task_script.js' %}"></script>
+{% endblock %}
+
+{% block this_page_header_references%}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+{% endblock %}

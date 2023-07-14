@@ -1,0 +1,38 @@
+{% extends 'shared/layer.html' %}
+{% block title %}Profile dashboard{% endblock %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+<div class="col-md-8">
+        <h2>User Profile</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+        <input type="hidden" name="form_identifier" value="change_profile">
+            {{ profile_form.as_p }}
+            <br>
+            <input class="btn btn-primary" type="submit" value="Save">
+        </form>
+
+
+</div>
+<div class="col-md-4">
+   {% if avatar %}
+    <img src="{{ avatar.url }}" class="rounded img-fluid" alt="...">
+       {% else %}
+       <img src="{% static 'images/no_photo_hd.png' %}" class="rounded img-fluid" alt="...">
+    {% endif %}
+</div>
+</div>
+ <hr>
+        <div>
+        <h2>Change Password</h2>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="form_identifier" value="change_password">
+            {{ password_form.as_div }}
+            <button class="btn btn-primary" type="submit">Change Password</button>
+        </form>
+        </div>
+
+{% endblock %}

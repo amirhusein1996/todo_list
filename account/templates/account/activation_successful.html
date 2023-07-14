@@ -1,0 +1,27 @@
+{% extends 'shared/layer.html' %}
+
+{% block title %}Activation Successful{% endblock %}
+{% block content %}
+
+<div class="row">
+  <div class="col-md-6 offset-md-3 mt-5">
+    <div class="alert alert-success" role="alert">
+      <h4 class="alert-heading">Account Successfully Activated</h4>
+      <p>Your account has been activated successfully. For security reasons, you will be automatically redirected to the login page.</p>
+      <p>If you are not redirected, please click <a href={% url 'account:login_view' %} class="login-link">here</a>.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block this_page_footer_references %}
+    <script>
+    const loginURL = document.querySelector('.login-link').getAttribute('href')
+    setInterval(function (){
+
+        window.location.href =loginURL
+    },
+    5000
+    )
+    </script>
+{% endblock %}

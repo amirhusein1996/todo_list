@@ -1,0 +1,33 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+      {% if request.user.is_authenticated %}
+         {% comment %}
+         for ajax purposes we need csrf_token in js files
+         and in this simple project , it will be needed only if user is authenticated
+         {% endcomment %}
+          <meta name="csrf-token" content="{{ csrf_token }}" />
+      {% endif %}
+    <title>{% block title %}{% endblock %}</title>
+
+{% include 'shared/components/_header_references.html' %}
+    {% block this_page_header_references %}{% endblock %}
+
+  </head>
+  <body>
+    {% include 'shared/components/_navbar.html' %}
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+
+  {% include 'shared/components/_footer_references.html' %}
+  {% block this_page_footer_references %}{% endblock %}
+  </body>
+</html>

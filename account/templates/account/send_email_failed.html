@@ -1,0 +1,14 @@
+{% extends 'shared/layer.html' %}
+
+{% block title %}Failed !{% endblock %}
+
+{% block content %}
+<div class="row">
+            <div class="col-md-6 offset-md-3 mt-5">
+                <div class="alert alert-danger" role="alert">
+                    <h4 class="alert-heading">Email sending failed</h4>
+                    <p>Sorry, we were unable to send your email. Please try again later.</p>
+                </div>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% if is_paginated %}
+<div class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+        <a role="button" onclick="changePageNumber('{{ page_obj.previous_page_number }}')" class="page-link cursor-pointer">&laquo; Prev</a>
+    {% else %}
+        <a role="button" class="page-link disabled">&laquo; Prev</a>
+    {% endif %}
+
+    {% for page_num in paginator.page_range %}
+        <a role="button" onclick="changePageNumber('{{ page_num }}')"
+        {% if page_num == page_obj.number %}
+           class="page-link active cursor-pointer" {% else %}class="page-link cursor-pointer"{% endif %}>
+            {{ page_num }}</a>
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        <a role="button"onclick="changePageNumber('{{ page_obj.next_page_number }}')" class="page-link cursor-pointer">Next »</a>
+    {% else %}
+        <a role="button" class="page-link disabled">Next »</a>
+    {% endif %}
+</div>
+{% endif %}

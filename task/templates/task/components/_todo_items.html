@@ -1,0 +1,57 @@
+{% if tasks %}
+
+
+<ul id="todoList" class="list-group">
+   {% for task in tasks %}
+    <div class="single-item">
+    <form class="single-item-hidden-form" style="display: none;">
+        <!--
+        This form is used to simplify finding the values of an item in JavaScript.
+        There are many more ways to select and catch the values,
+        but this is the simplest way.
+        -->
+        <input type="hidden" class="title" value="{{ task.title}}">
+        <textarea class="description" style="display: none;">{{ task.description }}</textarea>
+        <input type="hidden" class="priority" value="{{ task.priority }}">
+        <input type="hidden" class="category" value="{{ task.category }}">
+        <input type="hidden" class="deadline" value="{{ task.deadline|date:"Y-m-d" }}">
+    </form>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div>
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">{{ task.title }}</h4>
+
+            </div>
+            <p class="mb-0">
+                Priority: {{ task.get_priority_display }} | Progress:
+                <select class="custom-select custom-select-sm" onchange="changeProgress(this, '{{ task.id }}')" style="width:auto;">
+                {% for choice_value, choice_label in progress %}
+            <option value="{{ choice_value }}" {% if choice_value == task.progress %}selected{% endif %}>{{ choice_label }}</option>
+        {% endfor %}
+            </select>
+             | Category : {{ task.get_category_display }} |
+            {% if task.is_completed %}<i class="fas fa-check text-success"></i> Done {% else %}
+            <small class="text-muted">Deadline:{{ task.task_remaining_time }}</small>
+            {% endif %}
+                | <small class="text-muted">Create date : {{ task.created_at|date:'Y-m-d' }}</small>
+            </p>
+            <div class="border p-2 mt-2" >
+            <p class="mb-0" >{{ task.description }} </p>
+        </div>
+        </div>
+        <div>
+            <button class="btn btn-danger mb-2" onclick="deleteThis(this , '{{ task.id }}')" type="button">Delete</button>
+            <button class="btn btn-primary" type="button" onclick="editThis(this , '{{ task.id }}')">Edit</button>
+        </div>
+    </li>
+    </div>
+   {% endfor %}
+</ul>
+
+<div class="pages">
+            {% include 'task/components/_paginaton.html' %}
+</div>
+
+{% else %}
+<p>there is no task</p>
+{% endif %}

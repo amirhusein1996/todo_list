@@ -1,0 +1,10 @@
+{% extends 'shared/layer.html' %}
+
+{% block title %}Logged Out{% endblock %}
+
+{% block content %}
+    <div class="text-center mt-5"> <h1 class="display-4">You have been logged out</h1> <p class="lead">Thank you for using our site. We hope to see you again soon!</p>
+
+<a href="{% url 'account:login_view' %}" class="btn btn-primary btn-lg">Login back</a>
+</div>
+{% endblock %}

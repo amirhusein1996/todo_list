@@ -1,0 +1,58 @@
+{% extends 'shared/layer.html' %}
+{% load static %}
+{% block title %}ToDo{% endblock %}
+
+{% block content %}
+
+     <div class="container">
+    <h1>Welcome to our exceptional to-do list service!</h1>
+             <img src="{% static 'images/todo-list.jpg' %}" class="rounded mx-auto d-block" style="max-height: 200px">
+
+    <h4>Why you should use our service:</h4>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Seamless Task Management</h5>
+        <p class="card-text">Our service provides a user-friendly interface that allows you to easily add and edit tasks. You can swiftly create new to-do items, update existing ones, and mark tasks as completed—all in one convenient location. Say goodbye to scattered sticky notes and disorganized reminders!</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Priority and Progress Tracking</h5>
+        <p class="card-text">We understand the importance of prioritizing tasks to optimize your productivity. With our service, you can assign priorities to your to-do items, ensuring that you focus on the most critical tasks first. Additionally, you can track the progress of your tasks, giving you a clear overview of what's been accomplished and what's left to do.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Tags for Efficient Organization</h5>
+        <p class="card-text">Tags offer a powerful organizational tool to categorize your tasks based on different criteria. You have the flexibility to create custom tags, such as "Work," "Personal," or "Errands." By using tags, you can easily filter and search for specific tasks, saving you time and effort in locating the items you need.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Personalized Task Filtering</h5>
+        <p class="card-text">Our service provides advanced filtering options, allowing you to view your to-do list based on specific tags, priorities, or progress. Whether you want to focus on high-priority work tasks or filter by specific tags like "Urgent" or "Important," our platform enables you to tailor your task view according to your preferences.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Enhanced Productivity</h5>
+        <p class="card-text">By utilizing our service, you can experience improved productivity and efficiency in managing your tasks. With the ability to set priorities, track progress, and filter tasks based on tags, you can maintain better control over your workload, stay organized, and ensure that nothing falls through the cracks.</p>
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Collaborative Features (Optional)</h5>
+        <p class="card-text">For users who require collaborative task management, we offer the option to share your to-do lists with others. This feature enables you to delegate tasks, track shared progress, and ensure smooth collaboration within teams or among family members.</p>
+      </div>
+    </div>
+
+    <h4>Start using our service today and witness the transformation in your task management process. Stay organized, boost your productivity, and accomplish more with ease!</h4>
+  </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'shared/layer.html' %}
+{% load static %}
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+
+<div class="contact-us-page">
+<div id="changeable_section">
+        <form method="post" class="form-contact-us">
+    {% csrf_token %}
+    {% if form.email %}
+        <div>
+            {{ form.email.label_tag }}
+            {{ form.email }}
+        </div>
+    {% endif %}
+    <div>
+        {{ form.subject.label_tag }}
+        {{ form.subject }}
+    </div>
+    <div>
+        {{ form.message.label_tag }}
+        {{ form.message }}
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+</div>
+</div>
+{% endblock %}
+
+{% block this_page_footer_references %}
+    <script src="{% static 'js/contact_us_script.js' %}"></script>
+
+{% endblock %}
