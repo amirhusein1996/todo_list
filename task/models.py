@@ -3,6 +3,8 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from django.dispatch import receiver
+from django.db.models.signals import pre_save
 
 
 class Task(models.Model):
@@ -29,7 +31,7 @@ class Task(models.Model):
     progress = models.CharField(verbose_name=_('Progress'), max_length=10, choices=Progress.choices,
                                 default=Progress.AT_BEGINNING)
     category = models.CharField(verbose_name=_('Category'), choices=Category.choices, max_length=1)
-    is_completed = models.BooleanField(verbose_name=_('Is completed'), blank=True, null=True,editable=False)
+    is_completed = models.BooleanField(verbose_name=_('Is completed'), blank=True, null=True, editable=False)
     deadline = models.DateField(verbose_name=_('Deadline'), null=True, blank=True)
     created_at = models.DateTimeField(verbose_name=_('Created at'), auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name=_('Updated at'), auto_now=True)
@@ -134,15 +136,15 @@ class Tag(models.Model):
     def __str__(self):
         return self.title
 
-    def save(self, *args, **kwargs):
-        """
-        :count: number of tags per user
 
-        To limit the number of tag creations to a maximum of 5 per user
-        """
-        count = Tag.objects.filter(user=self.user).count()
-        # Check if the user already has 5 categories
+@receiver(signal=pre_save, sender=Tag)
+def limit_creation(sender, instance, **kwargs):
+    """
+    :count: number of tags per user
+
+    To limit the number of tag creations to a maximum of 5 per user
+    """
+    if instance.pk is None: # check ig it's new instance
+        count = Tag.objects.filter(user=instance.user).count()
         if count >= 5:
             raise ValidationError(_("You have reached the maximum limit of tags."))
-
-        super().save(*args, **kwargs)
