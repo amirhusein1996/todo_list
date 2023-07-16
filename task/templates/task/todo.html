@@ -5,10 +5,23 @@
 
 {% block content %}
 
-  <div class="row">
+<div class="accordion" id="accordion1">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="heading1">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+          <h4><strong>Manage Section</strong></h4>
+      </button>
+    </h2>
+    <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="heading1" data-bs-parent="#accordion1">
+      <div class="accordion-body">
 
 
-<div class="col-md-8">
+
+
+                <div class="row">
+
+<!-- todo-form started -->
+<div class="col-md-4">
     <h2>To-Do Form</h2>
     <form id="todoForm">
         <div class="form-group">
@@ -18,13 +31,13 @@
         <label for="description">Description:</label>
         <textarea class="form-control" name="description" id="description" rows="3" required=""></textarea>
     </div>
-        <div class="form-row"> <div class="form-group col-md-6">
+        <div class="form-row"> <div class="form-group">
         <label for="priority">Priority:</label>
         <select class="form-control" name="priority" id="priority" required="">
             < {% for choice_value, choice_label in priority %}
             <option value="{{ choice_value }}">{{ choice_label }}</option>
         {% endfor %}
-        </select> </div> <div class="form-group col-md-6">
+        </select> </div> <div class="form-group">
         <label for="category">Category:</label>
         <select class="form-control" name="category" id="category" required="">
             {% for choice_value, choice_label in category %}
@@ -35,7 +48,7 @@
 
     </div>
 
-                <div class="form-group col-md-6 mr-3">
+                <div class="form-group">
       <label for="dueDate">Due Date:</label>
       <input type="date" class="form-control ml-2" name="deadline" id="dueDate" required="">
     </div>
@@ -43,8 +56,31 @@
         <button type="button" class="btn btn-secondary" style="display: none;">Cancel</button>
     </form>
 </div>
+  <!-- todo-form ended -->
 
 
+  <!-- tag started -->
+<div class="col-md-4">
+    <h2 class="mb-3">Tags</h2>
+   <div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Enter your text" aria-label="Enter your text" aria-describedby="button-addon2">
+  <button class="btn btn-outline-secondary" type="button" id="button-addon2">Submit</button>
+</div>
+<p class="border p-2">Lorem ipsum dolor sit amet, consectetur adipiscing
+    <i class="fas fa-edit" style="color: #008000;"></i>
+    <i class="fa fa-solid fa-trash" style="color: #ff0000;">
+    </i>
+    </p>
+<p class="border p-2">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+<p class="border p-2">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+<p class="border p-2">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+<p class="border p-2">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+
+
+</div>
+  <!-- tag ended -->
+
+  <!--filter started-->
       <div class="col-md-4">
       <h2>Filter</h2>
 
@@ -86,15 +122,47 @@
       </div>
 
     </div>
+  <!--filter ended-->
   </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <div class="accordion" id="accordion2">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="heading2">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+<h4><strong>To-Do Items</strong> </h4>
+      </button>
+    </h2>
+    <div id="collapse2" class="accordion-collapse collapse show" aria-labelledby="heading2" data-bs-parent="#accordion2">
+      <div class="accordion-body">
+
+
+
+
   <div class="todo-list">
-  <h2>To-Do Items</h2>
       <div class="todo-items">
-
-
           {% include 'task/components/_todo_items.html' %}
       </div>
   </div>
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
 
 
